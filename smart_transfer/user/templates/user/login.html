@@ -1,0 +1,73 @@
+<!--// Login ModalBox //-->
+<div class="loginmodalbox modal fade" id="ritekhelamodalcenter" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+          <div class="modal-body ritekhela-bgcolor-two">
+             <h5 class="modal-title">Login To Your Account</h5>
+             <a href="#" class="close ritekhela-bgcolor-two" data-dismiss="modal" aria-label="Close">
+                 <i class="fa fa-times"></i>
+             </a>
+
+             <form class="loginmodalbox-search" method="POST" action="{% url 'login_user' %}">
+                {% csrf_token %}
+                {{ form_login.as_p }}
+                <input type="submit" value="Login">
+            </form>
+
+             {% if messages %}
+                 <div class="alert-box mt-3">
+                     {% for message in messages %}
+                         <div class="alert alert-danger">{{ message }}</div>
+                     {% endfor %}
+                 </div>
+             {% endif %}
+
+             <div class="ritekhela-loginbox-social mt-3">
+                 <ul>
+                     <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                     <li class="twitter"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                     <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a></li>
+                     <li class="dribbble"><a href="#"><i class="fab fa-dribbble"></i> Dribbble</a></li>
+                 </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
+
+<!--// Sign Up ModalBox //-->
+<div class="loginmodalbox modal fade" id="ritekhelamodalrg" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+          <div class="modal-body ritekhela-bgcolor-two">
+             <h5 class="modal-title">Sign Up Now</h5>
+             <a href="#" class="close ritekhela-bgcolor-two" data-dismiss="modal" aria-label="Close">
+                 <i class="fa fa-times"></i>
+             </a>
+
+             <form class="loginmodalbox-search" method="POST" action="{% url 'register_user' %}">
+                {% csrf_token %}
+                {{ form_register.as_p }}
+                <input type="submit" value="Sign Up">
+            </form>
+
+             {% if messages %}
+                 <div class="alert-box mt-3">
+                     {% for message in messages %}
+                         <div class="alert alert-danger">{{ message }}</div>
+                     {% endfor %}
+                 </div>
+             {% endif %}
+
+             <div class="ritekhela-loginbox-social mt-3">
+                 <ul>
+                     <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                     <li class="twitter"><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                     <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a></li>
+                     <li class="dribbble"><a href="#"><i class="fab fa-dribbble"></i> Dribbble</a></li>
+                 </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
