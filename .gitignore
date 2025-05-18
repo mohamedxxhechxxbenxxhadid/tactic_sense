@@ -1,4 +1,5 @@
 myenv/
+smart_transfer/post_images/
 smart_transfer/user/migrations/__pycache__/
 smart_transfer/user/migrations/
 smart_transfer/user/__pycache__/
