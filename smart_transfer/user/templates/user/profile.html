@@ -1,0 +1,58 @@
+
+{% include "main_template/navbar.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Welcome, {{ user.email }}</h2>
+          <p class="text-center">
+            <span class="badge bg-secondary">{{ user.get_user_type_display }}</span>
+          </p>
+
+          {% if not user.finished %}
+            {% if form %}
+              <h5 class="text-center mt-4">Complete Your Profile</h5>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid mt-3">
+                  <button type="submit" class="btn btn-primary">Save Profile</button>
+                </div>
+              </form>
+            {% else %}
+              <div class="alert alert-warning text-center mt-4" role="alert">
+                No profile form available. Please contact support.
+              </div>
+            {% endif %}
+
+          {% else %}
+            <h5 class="mt-4">Your Profile Details</h5>
+            <ul class="list-group list-group-flush mt-3">
+              <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+              <li class="list-group-item"><strong>User Type:</strong> {{ user.get_user_type_display }}</li>
+              <li class="list-group-item"><strong>Joined:</strong> {{ user.date_joined|date:"F j, Y" }}</li>
+              {% if user.profile_picture %}
+                <li class="list-group-item">
+                  <strong>Profile Picture:</strong><br>
+                  <img src="{{ user.profile_picture.url }}" alt="Profile" class="img-thumbnail mt-2" style="max-height: 150px;">
+                </li>
+              {% endif %}
+
+              {% if profile_fields %}
+                {% for field in profile_fields %}
+                  <li class="list-group-item">
+                    <strong>{{ field.name }}:</strong> {{ field.value }}
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

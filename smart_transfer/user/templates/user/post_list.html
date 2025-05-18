@@ -1,0 +1,68 @@
+{% include "main_template/navbar.html" %}
+
+{% block content %}
+
+<div class="ritekhela-main-content">
+
+    <div class="ritekhela-main-section ritekhela-fixture-list-full">
+        <div class="container">
+            <div class="row">
+
+                <!-- Posts Section -->
+                <div class="col-md-8">
+                    {% if posts %}
+                        <div class="ritekhela-blogs ritekhela-blog-view1">
+                            <ul class="row">
+                                {% for post in posts %}
+                                    <li class="col-md-6">
+                                        {% for image in post.images.all|slice:":1" %}
+                                            <figure>
+                                                <a href="{% url 'post_detail' post.pk %}">
+                                                    <img src="{{ image.image.url }}" alt=""> 
+                                                    <i class="fa fa-link"></i>
+                                                </a>
+                                            </figure>
+                                        {% endfor %}
+                                        <div class="ritekhela-blog-view1-text">
+                                            <ul class="ritekhela-blog-options">
+                                                <li>
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    {{ post.created_at|date:"F j, Y, g:i a" }}
+                                                </li>
+                                                <li><i class="fa fa-user"></i> {{ post.user.username }}</li>
+                                            </ul>
+                                            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                                            <p>{{ post.content|truncatewords:20 }}</p>
+                                            <a href="{% url 'post_detail' post.pk %}" class="ritekhela-blog-view1-btn">Read More</a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <!-- Pagination Placeholder -->
+                        <div class="ritekhela-pagination">
+                            <ul>
+                                <!-- Replace with Django pagination logic if implemented -->
+                                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <p>No posts available.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Sidebar -->
+                    {% include "main_template/sidebar_widgets.html" %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+

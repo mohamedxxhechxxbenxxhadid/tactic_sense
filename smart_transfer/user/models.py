@@ -1,6 +1,8 @@
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.contrib.auth.models import Group
+from django.db import models
+from django.conf import settings
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, user_type=None, **extra_fields):
@@ -49,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
-
+    finished = models.BooleanField(blank=False,default=False)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -145,3 +147,21 @@ class SponsorProfile(models.Model):
     last_name = models.CharField(max_length=30, blank=True)
     company_name = models.CharField(max_length=100, blank=True, null=True)
     industry = models.CharField(max_length=100, blank=True, null=True)
+
+
+class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='post_images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

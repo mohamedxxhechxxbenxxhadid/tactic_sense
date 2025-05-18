@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user"
 ]
+MIDDLEWARE_CLASSES = [
+    "user.middelware.user_middelware.UnfinishedRestrictionMiddleware",
 
+]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

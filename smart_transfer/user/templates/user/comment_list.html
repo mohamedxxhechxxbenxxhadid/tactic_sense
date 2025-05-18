@@ -1,0 +1,18 @@
+<div id="comment-section" hx-swap-oob="true" class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h4 class="card-title">Comments:</h4>
+    {% for comment in comments %}
+      <div class="d-flex mb-3 border-bottom pb-2">
+        <img src="{% static 'images/default-avatar.png' %}" class="rounded-circle me-3" width="40" height="40" alt="User Avatar">
+        <div>
+          <strong>{{ comment.user }}</strong><br>
+          <p class="mb-0">{{ comment.text }}</p>
+          <small class="text-muted">{{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No comments yet.</p>
+    {% endfor %}
+  </div>
+</div>
+

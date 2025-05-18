@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, PlayerProfile, ClubProfile, ManagerStaffProfile, PlayerAgentProfile, RecruitingAgentProfile, ServiceProviderProfile, SportingManagementAgencyProfile, CommunicationBoxProfile, FitnessClubProfile, EquipmentSupplierProfile, SportsClothingBrandProfile, TravelingAgencyProfile, SponsorProfile
+from .models import Post,Comment,User, PlayerProfile, ClubProfile, ManagerStaffProfile, PlayerAgentProfile, RecruitingAgentProfile, ServiceProviderProfile, SportingManagementAgencyProfile, CommunicationBoxProfile, FitnessClubProfile, EquipmentSupplierProfile, SportsClothingBrandProfile, TravelingAgencyProfile, SponsorProfile
 from django import forms
 
 class UserAdmin(admin.ModelAdmin):
@@ -138,3 +138,5 @@ admin.site.register(EquipmentSupplierProfile, EquipmentSupplierProfileAdmin)
 admin.site.register(SportsClothingBrandProfile, SportsClothingBrandProfileAdmin)
 admin.site.register(TravelingAgencyProfile, TravelingAgencyProfileAdmin)
 admin.site.register(SponsorProfile, SponsorProfileAdmin)
+admin.site.register(Post)
+admin.site.register(Comment) 

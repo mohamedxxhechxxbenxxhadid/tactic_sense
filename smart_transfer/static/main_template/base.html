@@ -1,5 +1,6 @@
-{% load static %}
 
+{% load static %}
+{% load profile_extras %}
 
 <!doctype html>
 <html lang="zxx">
@@ -25,6 +26,8 @@
     <link rel="stylesheet" href="{% static 'main_template/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'main_template/css/color.css' %}">
     <link rel="stylesheet" href="{% static 'main_template/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'main_template/css/blog.css' %}">
+
     <!-- JavaScript -->
     <script src="{% static 'main_template/script/jquery.js' %}"></script>
     <script src="{% static 'main_template/script/popper.min.js' %}"></script>
@@ -36,6 +39,8 @@
     <script src="{% static 'main_template/script/progressbar.js' %}"></script>
     <script src="{% static 'main_template/script/jquery.countdown.min.js' %}"></script>
     <script src="{% static 'main_template/script/functions.js' %}"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
 </head>
 
 <body class="home">
